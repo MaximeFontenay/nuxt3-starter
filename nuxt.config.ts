@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   },
   app: {
       head : {
-          title: 'New',
+          title: 'Example',
           htmlAttrs: {lang: 'fr'},
           meta: [
               {name: 'charset', charset: 'utf-8'},
@@ -13,7 +13,7 @@ export default defineNuxtConfig({
               {name: 'language', content: 'FR'},
               {name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1'},
               {name: 'description', content: 'New'},
-              {name: 'url', content: 'https://nuxichess.com'},
+              {name: 'url', content: 'https://example.com'},
               {name: 'robots', content: 'index,follow'},
               {name: 'author', content: 'Maxime Fontenay'},
               {name: 'designer', content: 'Maxime Fontenay'},
@@ -35,13 +35,15 @@ export default defineNuxtConfig({
   },
   modules: [
     '@pinia/nuxt',
-    '@nuxtjs/tailwindcss',
     '@nuxt/image',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-fonts',
     '@nuxtjs/robots',
     '@nuxtjs/color-mode',
-    '@nuxtjs/google-fonts',
     'nuxt-icon',
     'nuxt-simple-sitemap',
-    '@nuxt/ui'
   ],
+  site: {
+    url: 'https://example.com',
+  },
 })
