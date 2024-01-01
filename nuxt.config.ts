@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   },
   app: {
       head : {
-          title: 'Example',
+          title: 'Playground',
           htmlAttrs: {lang: 'fr'},
           meta: [
               {name: 'charset', charset: 'utf-8'},
@@ -35,13 +35,8 @@ export default defineNuxtConfig({
   },
   modules: [
     '@pinia/nuxt',
-    '@nuxt/image',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
-    '@nuxtjs/robots',
-    '@nuxtjs/color-mode',
-    'nuxt-icon',
-    'nuxt-simple-sitemap',
   ],
   site: {
     url: 'https://example.com',

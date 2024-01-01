@@ -38,7 +38,7 @@ body {
     min-height: 100svh;
     position: relative;
     color: $light;
-    background-color: #4b4b4b;
+    background-color: #181818;
     margin: 0;
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -141,4 +141,22 @@ button {
 }
 :where(img, svg, video, canvas, audio, iframe, embed, object) {
     display: block;
+}
+
+.border {
+    border-style: solid;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s 0.5s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
