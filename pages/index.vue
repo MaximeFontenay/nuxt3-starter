@@ -6,12 +6,14 @@
 
 <template>
 	<div class="">
-		index
+		
 	</div>
 </template>
 
 
 <style lang="scss" scoped>
 @use '@/assets/_variables.scss' as *;
+
+
 
 </style>

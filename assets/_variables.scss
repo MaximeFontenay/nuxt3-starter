@@ -4,44 +4,40 @@
 
 //? Colors 
 $t: transparent;
-$light: #E6E6E6;
-$dark: #1d1d1d;
-
-$blue: #3377FE;
-$red: #DB785E;
-$green: #5DBE74;
-$yellow: #E3D45A;
-$purple: #A798E8;
-$black: #0B0905;
-$grey: #818181;
-$white: #F3F5F9;
-
-$primary: $black;
-$secondary: $yellow;
-
+$light: #F6F6F6;
+$dark: #070707;
 
 $primary: #F4F83C;
 $primary30: #919405;
 $primary10: #303102;
-$light: #F3F3F3;
-$lightGrey: #A4A4A4;
-$darkGrey: #111111;
-$dark: #000000;
-
-$lightTile: #EDEDED;
-$darkTile: #b4b4b4; 
 
 //? Sizes
-$s1 : '1rem';
-$s2 : '2rem';
-$s3 : '3rem';
-$s4 : '4rem';
-$s5 : '5rem';
-$s6 : '6rem';
-$s7 : '7rem';
-$s8 : '8rem';
-$s9 : '9rem';
-$s10 : '10rem';
+$s1 : 4px;
+$s2 : 8px;
+$s3 : 12px;
+$s4 : 16px;
+$s5 : 20px;
+$s6 : 24px;
+$s7 : 28px;
+$s8 : 32px;
+$s9 : 36px;
+$s10 : 40px;
+$s11 : 44px;
+$s12 : 48px;
+$s13 : 52px;
+$s14 : 56px;
+$s15 : 60px;
+$s16 : 64px;
+$s17 : 68px;
+$s18 : 72px;
+$s19 : 76px;
+$s20 : 80px;
+$s21 : 84px;
+$s22 : 88px;
+$s23 : 92px;
+$s24 : 96px;
+$s25 : 100px;
+
 
 //! ///////////
 //! // Fonts // 
@@ -49,7 +45,7 @@ $s10 : '10rem';
 
 //? Main Fonts
 // .ttf format('TrueType') | .otf format('OpenType') | .woff format('woff') | .woff2 format('woff2')
-$font: 'satoshi';
+$font: 'excon';
 $fontFormat: 'woff2';
 
 @if $font != 'FontName' {
@@ -62,6 +58,18 @@ $fontFormat: 'woff2';
         font-display: swap;
     }
 } 
+
+$font2: 'durer';
+$fontFormat2: 'woff2';
+
+@font-face {
+    font-family: $font2;
+    src: url("/fonts/#{$font2}.#{$fontFormat2}") format("#{$fontFormat2}");
+    font-weight: 100 900;
+    font-variation-settings: 'wght' 400;
+    font-style: normal;
+    font-display: swap;
+}
 
 //! ////////////
 //! // Mixins // 
@@ -77,7 +85,7 @@ $fontFormat: 'woff2';
 
 
 //? Variables 
-@mixin color($property: color, $color: $primary, $alpha: 1){
+@mixin color($color: $primary, $alpha: 1, $property: color){
     #{$property}: rgba($color, $alpha)
 }
 
@@ -96,26 +104,20 @@ $fontFormat: 'woff2';
     }
 }
 
-@mixin font($whichFont: $font) {
-    @if $whichFont != 'FontName' {
-        font-family: $whichFont, sans-serif;
-    }
-    @else {
-        font-family: sans-serif;
-    }
-    @include is-chrome {
-        -webkit-font-smoothing: subpixel-antialiased;
-    }
-    @include is-firefox {
-        -moz-osx-font-smoothing: grayscale;
-    }
+@mixin font($font: $font) {
+    font-family: $font, system-ui, -apple-system, sans-serif;
 }
 
 //? Positioning
-@mixin flex($justify: center, $align: center,$direction: row, $wrap: nowrap, $gap: 0) {
+@mixin flex($justify: center, $align: center, $gap: 0, $direction: row, $wrap: nowrap) {
+    @if $justify == 'between' {
+        justify-content: space-between;
+    }
+    @else {
+        justify-content: $justify;
+    }
     display: flex;
     flex-direction: $direction;
-    justify-content: $justify;
     align-items: $align;
     flex-wrap: $wrap;
     gap: $gap;
@@ -204,7 +206,7 @@ $fontFormat: 'woff2';
         cursor: pointer;
     }
     &::-webkit-scrollbar-thumb:hover {
-        @include color('background', $color, .5);
+        @include color($color, .5,'background');
     }
 }
 
@@ -221,56 +223,34 @@ $fontFormat: 'woff2';
 }
 
 //? Responsive
-@mixin mobile($minmax: min-width) {
-    @media screen and ($minmax: 479.99px) {
+
+
+@mixin sm($minmax: min-width) {
+    @media screen and ($minmax: 480px) {
         @content;
     }
 }
 
-@mixin tablet($minmax: min-width) {
-    @media screen and ($minmax: 767.99px) {
+@mixin md($minmax: min-width) {
+    @media screen and ($minmax: 768px) {
         @content;
     }
 }
 
-@mixin small-desktop($minmax: min-width) {
-    @media screen and ($minmax: 991.99px) {
+@mixin lg($minmax: min-width) {
+    @media screen and ($minmax: 976px) {
         @content;
     }
 }
 
-@mixin desktop($minmax: min-width) {
-    @media screen and ($minmax: 1099.99px) {
-        @content;
-    }
-}
-
-@mixin large-desktop($minmax: min-width) {
+@mixin xl($minmax: min-width) {
     @media screen and ($minmax: 1100px) {
         @content;
     }
 }
 
-//? Mobile first
-@mixin mq($bp) {
-    @if $bp == xl {
-        @media only screen and (min-width: 1221px) {
-           @content;
-        }
-    } 
-    @if $bp == lg {
-        @media only screen and (min-width: 1025px) {
-            @content;
-        }
-    } 
-    @else if $bp == md {
-        @media only screen and (min-width: 769px) {
-            @content;
-        }
-    } 
-    @else if $bp == sm {
-        @media only screen and (min-width: 481px) {
-            @content;
-        }
+@mixin xxl($minmax: max-width) {
+    @media screen and ($minmax: 1100px) {
+        @content;
     }
 }

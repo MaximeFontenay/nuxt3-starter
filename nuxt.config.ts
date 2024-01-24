@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   },
   app: {
       head : {
-          title: 'Playground',
+          title: 'Maxime Fontenay - Front-End Developer & Creative Developer',
           htmlAttrs: {lang: 'fr'},
           meta: [
               {name: 'charset', charset: 'utf-8'},
@@ -13,7 +13,7 @@ export default defineNuxtConfig({
               {name: 'language', content: 'FR'},
               {name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1'},
               {name: 'description', content: 'New'},
-              {name: 'url', content: 'https://example.com'},
+              {name: 'url', content: 'https://maximefontenay.fr'},
               {name: 'robots', content: 'index,follow'},
               {name: 'author', content: 'Maxime Fontenay'},
               {name: 'designer', content: 'Maxime Fontenay'},
@@ -33,12 +33,5 @@ export default defineNuxtConfig({
   typescript: {
       strict: true
   },
-  modules: [
-    '@pinia/nuxt',
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/google-fonts',
-  ],
-  site: {
-    url: 'https://example.com',
-  },
+  modules: [],
 })

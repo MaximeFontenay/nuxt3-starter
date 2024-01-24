@@ -1,162 +1,128 @@
-@use 'variables' as *;
+@use "variables" as *;
 
-*, ::after, ::before {
-    margin: 0;
-    padding: 0;
-    // user-select: none;
-    list-style: none;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    @media (prefers-reduced-motion: reduce) {
-        & {
-            animation-delay: -1ms !important;
-            animation-duration: 1ms !important;
-            animation-iteration-count: 1 !important;
-            background-attachment: initial !important;
-            scroll-behavior: auto !important;
-            transition-duration: 0s !important;
-            transition-delay: 0s !important;
-        }
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  // user-select: none;
+  list-style: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  @media (prefers-reduced-motion: reduce) {
+    & {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
     }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :has(:target) {
+    scroll-behavior: smooth;
+    scroll-padding-top: 3rem;
+  }
 }
 
 *::selection {
-    background: rgba(122, 248, 234, 0.15);
-    @include text-stroke(.5px, $t);
-    color: $primary;
+  background: rgba(122, 248, 234, 0.15);
+  @include text-stroke(0.5px, $t);
+  color: $primary;
 }
 
 html {
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    scrollbar-gutter: stable;
-    scrollbar-gutter: stable both-edges;
+  color-scheme: dark light;
+  hanging-punctuation: first last;
+  overflow-x: clip;
+  scrollbar-gutter: stable;
 }
 
 body {
-    min-height: 100vh;
-    min-height: 100svh;
-    position: relative;
-    color: $light;
-    background-color: #181818;
-    margin: 0;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    font-smooth: always;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -webkit-text-size-adjust: 100%;
-    -webkit-touch-callout: none;
-    @include font();
-    @include scrollbar(3px, $primary);
-    @include is-firefox {
-        -moz-osx-font-smoothing: grayscale;
-        scrollbar-width: thin;
-    }
+  color: $light;
+  background-color: $dark;
+  min-height: 100svh;
+  text-wrap: pretty;
+  font-smooth: always;
+  position: relative;
+  overflow-x: clip;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-text-size-adjust: 100%;
+  -webkit-touch-callout: none;
+  @include font();
+  @include scrollbar(3px, $primary);
+  @include is-firefox {
+    -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: thin;
+  }
 }
 
+.durer {
+  @include font($font2);
+}
 
 img {
-    height: 100%;
-    width: 100%;
-    transition: .2s;
-    object-fit: contain;
-    image-resolution: smooth;
-    pointer-events: none;
-    @include is-chrome {
-        image-resolution: -webkit-optimize-contrast;
-    }
-    @include is-firefox {
-        image-rendering: optimizequality;
-    }
+  object-fit: contain;
+  pointer-events: none;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 1rem;
+  image-resolution: from-image 300dpi;
+  @include is-firefox {
+    image-rendering: optimizequality;
+  }
 }
 
 svg {
-    backface-visibility: hidden;
-    max-height: 100%;
-    max-width: 100%;
-    @include is-chrome {
-        image-resolution: -webkit-optimize-contrast;
-    }
-    @include is-firefox {
-        image-rendering: optimizequality;
-    }
-
-    path {
-        transition: .2s;
-    }
+  max-height: 100%;
+  @include is-firefox {
+    image-rendering: optimizequality;
+  }
 }
 
-a {
-    transition: .3s;
-
-    &::selection,
-    &:hover {
-        @include color('color', $primary, .5)
-    }
-
-    &:focus-visible {
-        @include color('outline-color', $primary, .5);
-        outline-style: dashed;
-        outline-width: 1px;
-        outline-offset: 5px;
-    }
+ul,
+ol,
+li {
+  max-width: 100%;
 }
-
-ul, ol, li {
-    max-width: 100%;
-}
-
-button {
-    cursor: pointer;
-    transition: .2s;
-}
-
 
 // Reset
-:where(*) {
-    font-family: "satoshi", sans-serif;
+:where(p, h1, h2, h3, h4, h5, h6, ul, ol, li) {
+  overflow-wrap: break-word;
 }
-:where(p, h1, h2, h3, h4, h5, h6) {
-    overflow-wrap: break-word;
-}
+
 :where(input, button, textarea, select) {
-    color: inherit;
-    outline: none;
-    background-color: $t;
-    border: none;
+  color: inherit;
+  outline: none;
+  background-color: $t;
+  border: none;
 }
-:where(p, h1, h2, h3, h4, h5, h6, input, button, textarea, select) {
-    line-height: 1;
-}
+
 :where(details, button) {
-    cursor: pointer;
+  cursor: pointer;
 }
+
 :where(textarea) {
-    resize: vertical;
+  resize: vertical;
 
-    &::-webkit-resizer {
-        background: $dark;
-        border-bottom: 1px dotted $yellow;
-    }
-}
-:where(img, svg, video, canvas, audio, iframe, embed, object) {
-    display: block;
+  &::-webkit-resizer {
+    background: $t;
+  }
 }
 
-.border {
-    border-style: solid;
+:where(img, picture, svg, video, canvas, audio, iframe, embed, object) {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-.slide-fade-enter-active {
-  transition: all 0.3s 0.5s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
+:where(a) {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
